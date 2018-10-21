@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CARWASHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="_AUTO">
+    <Key>
+      <PropertyRef Name="PLACA" />
+    </Key>
+    <Property Name="PLACA" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DNI" Type="int" Nullable="false" />
+    <Property Name="MARCA" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="MODELO" Type="varchar" MaxLength="30" />
+    <Property Name="CLASE" Type="varchar" MaxLength="20" />
+    <Property Name="NUM_ASI" Type="int" />
+  </EntityType>
+  <EntityType Name="_LOGIN">
+    <Key>
+      <PropertyRef Name="COD_LOGIN" />
+    </Key>
+    <Property Name="COD_LOGIN" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="COD_TIPO_LOG" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="_USER" Type="varchar" MaxLength="20" />
+    <Property Name="_PASSWORD" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="DNI" />
+    </Key>
+    <Property Name="DNI" Type="int" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="20" />
+    <Property Name="APELLIDO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CORREO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TELEFONO" Type="numeric" Precision="20" Scale="0" />
+  </EntityType>
+  <EntityType Name="COMPROBANTE_PAGO">
+    <Key>
+      <PropertyRef Name="COD_COMPROBANTE" />
+    </Key>
+    <Property Name="COD_COMPROBANTE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="COD_ORDEN_ATENCION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PLACA" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="COD_TIPO_COMPRO" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DNI" Type="int" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+    <Property Name="TELEFONO" Type="int" />
+    <Property Name="OBSERVACIONES" Type="varchar" MaxLength="50" />
+    <Property Name="IMPORTE_TOT" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SUBTOTAL" Type="float" />
+    <Property Name="IGV" Type="float" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CARWASH.dbo.DETALLE_ORDEN_ATENCION' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="DETALLE_ORDEN_ATENCION">
+    <Key>
+      <PropertyRef Name="COD_MATE" />
+      <PropertyRef Name="PLACA" />
+      <PropertyRef Name="COD_ORDEN_ATENCION" />
+      <PropertyRef Name="DNI" />
+    </Key>
+    <Property Name="COD_MATE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PLACA" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="COD_ORDEN_ATENCION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DNI" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EMPLEADO">
+    <Key>
+      <PropertyRef Name="COD_EMP" />
+    </Key>
+    <Property Name="COD_EMP" Type="int" Nullable="false" />
+    <Property Name="COD_TIPO_EMP" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="20" />
+    <Property Name="APELLIDO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CORREO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TELEFONO" Type="numeric" Precision="20" Scale="0" />
+    <Property Name="CUMPLEAÑOS" Type="date" />
+  </EntityType>
+  <EntityType Name="MARCA_MATERIAL">
+    <Key>
+      <PropertyRef Name="COD_MARCA" />
+    </Key>
+    <Property Name="COD_MARCA" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MATERIALES">
+    <Key>
+      <PropertyRef Name="COD_MATE" />
+    </Key>
+    <Property Name="COD_MATE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="COD_MARCA" Type="varchar" MaxLength="20" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PRECI_UNI" Type="float" />
+    <Property Name="FECHA_INGRESO" Type="date" />
+  </EntityType>
+  <EntityType Name="ORDEN_ATENCION">
+    <Key>
+      <PropertyRef Name="COD_ORDEN_ATENCION" />
+    </Key>
+    <Property Name="COD_ORDEN_ATENCION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PLACA" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DNI" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CARWASH.dbo.ORDEN_COMPRA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="ORDEN_COMPRA">
+    <Key>
+      <PropertyRef Name="COD_MATE" />
+      <PropertyRef Name="RUC" />
+    </Key>
+    <Property Name="COD_MATE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RUC" Type="int" Nullable="false" />
+    <Property Name="CANTIDAD" Type="int" />
+    <Property Name="SUBTOTAL" Type="float" />
+  </EntityType>
+  <EntityType Name="PROVEEDOR">
+    <Key>
+      <PropertyRef Name="RUC" />
+    </Key>
+    <Property Name="RUC" Type="int" Nullable="false" />
+    <Property Name="RAZON_SOCIAL" Type="varchar" MaxLength="50" />
+    <Property Name="TELEFONO" Type="int" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CARWASH.dbo.REGISTRAR_SERVICIO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="REGISTRAR_SERVICIO">
+    <Key>
+      <PropertyRef Name="COD_MATE" />
+      <PropertyRef Name="COD_SERVICIO" />
+      <PropertyRef Name="CANTIDAD" />
+    </Key>
+    <Property Name="COD_MATE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="COD_SERVICIO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CANTIDAD" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SERVICIO">
+    <Key>
+      <PropertyRef Name="COD_SERVICIO" />
+    </Key>
+    <Property Name="COD_SERVICIO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="COD_TIPO_SERV" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PRECIO" Type="float" />
+    <Property Name="DURACION" Type="smalldatetime" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TIPO_COMPROBANTE">
+    <Key>
+      <PropertyRef Name="COD_TIPO_COMPRO" />
+    </Key>
+    <Property Name="COD_TIPO_COMPRO" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIPO_EMPLEADO">
+    <Key>
+      <PropertyRef Name="COD_TIPO_EMP" />
+    </Key>
+    <Property Name="COD_TIPO_EMP" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TIPO_LOGIN">
+    <Key>
+      <PropertyRef Name="COD_TIPO_LOG" />
+    </Key>
+    <Property Name="COD_TIPO_LOG" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TIPO_SERVICIO">
+    <Key>
+      <PropertyRef Name="COD_TIPO_SERV" />
+    </Key>
+    <Property Name="COD_TIPO_SERV" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VENTAS_DIARIAS">
+    <Key>
+      <PropertyRef Name="NUM_VENTAS" />
+    </Key>
+    <Property Name="NUM_VENTAS" Type="int" Nullable="false" />
+    <Property Name="COD_MATE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="COD_SERVICIO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PLACA" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="COD_ORDEN_ATENCION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DNI" Type="int" Nullable="false" />
+    <Property Name="FECHA_EMISION" Type="date" />
+    <Property Name="OBSERVACIONES" Type="varchar" MaxLength="50" />
+    <Property Name="IMPORTE_TOT" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SUBTOTAL" Type="float" />
+    <Property Name="IGV" Type="float" />
+  </EntityType>
+  <Association Name="FK_COMPROBANTE_PAGO_AUTO">
+    <End Role="_AUTO" Type="Self._AUTO" Multiplicity="1" />
+    <End Role="COMPROBANTE_PAGO" Type="Self.COMPROBANTE_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_AUTO">
+        <PropertyRef Name="PLACA" />
+      </Principal>
+      <Dependent Role="COMPROBANTE_PAGO">
+        <PropertyRef Name="PLACA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPROBANTE_PAGO_CLIENTE">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="COMPROBANTE_PAGO" Type="Self.COMPROBANTE_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="DNI" />
+      </Principal>
+      <Dependent Role="COMPROBANTE_PAGO">
+        <PropertyRef Name="DNI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPROBANTE_PAGO_ORDEN_ATENCION">
+    <End Role="ORDEN_ATENCION" Type="Self.ORDEN_ATENCION" Multiplicity="1" />
+    <End Role="COMPROBANTE_PAGO" Type="Self.COMPROBANTE_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDEN_ATENCION">
+        <PropertyRef Name="COD_ORDEN_ATENCION" />
+      </Principal>
+      <Dependent Role="COMPROBANTE_PAGO">
+        <PropertyRef Name="COD_ORDEN_ATENCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMPROBANTE_PAGO_TIPO_COMPROBANTE">
+    <End Role="TIPO_COMPROBANTE" Type="Self.TIPO_COMPROBANTE" Multiplicity="1" />
+    <End Role="COMPROBANTE_PAGO" Type="Self.COMPROBANTE_PAGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_COMPROBANTE">
+        <PropertyRef Name="COD_TIPO_COMPRO" />
+      </Principal>
+      <Dependent Role="COMPROBANTE_PAGO">
+        <PropertyRef Name="COD_TIPO_COMPRO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_ORDEN_ATENCION_AUTO">
+    <End Role="_AUTO" Type="Self._AUTO" Multiplicity="1" />
+    <End Role="DETALLE_ORDEN_ATENCION" Type="Self.DETALLE_ORDEN_ATENCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_AUTO">
+        <PropertyRef Name="PLACA" />
+      </Principal>
+      <Dependent Role="DETALLE_ORDEN_ATENCION">
+        <PropertyRef Name="PLACA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_ORDEN_ATENCION_CLIENTE">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="DETALLE_ORDEN_ATENCION" Type="Self.DETALLE_ORDEN_ATENCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="DNI" />
+      </Principal>
+      <Dependent Role="DETALLE_ORDEN_ATENCION">
+        <PropertyRef Name="DNI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_ORDEN_ATENCION_MATERIALES">
+    <End Role="MATERIALES" Type="Self.MATERIALES" Multiplicity="1" />
+    <End Role="DETALLE_ORDEN_ATENCION" Type="Self.DETALLE_ORDEN_ATENCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MATERIALES">
+        <PropertyRef Name="COD_MATE" />
+      </Principal>
+      <Dependent Role="DETALLE_ORDEN_ATENCION">
+        <PropertyRef Name="COD_MATE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_ORDEN_ATENCION_ORDEN_ATENCION">
+    <End Role="ORDEN_ATENCION" Type="Self.ORDEN_ATENCION" Multiplicity="1" />
+    <End Role="DETALLE_ORDEN_ATENCION" Type="Self.DETALLE_ORDEN_ATENCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDEN_ATENCION">
+        <PropertyRef Name="COD_ORDEN_ATENCION" />
+      </Principal>
+      <Dependent Role="DETALLE_ORDEN_ATENCION">
+        <PropertyRef Name="COD_ORDEN_ATENCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLEADO_TIPO_EMPLEADO">
+    <End Role="TIPO_EMPLEADO" Type="Self.TIPO_EMPLEADO" Multiplicity="1" />
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_EMPLEADO">
+        <PropertyRef Name="COD_TIPO_EMP" />
+      </Principal>
+      <Dependent Role="EMPLEADO">
+        <PropertyRef Name="COD_TIPO_EMP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LOGIN_COD_TIPO_LOG">
+    <End Role="TIPO_LOGIN" Type="Self.TIPO_LOGIN" Multiplicity="1" />
+    <End Role="_LOGIN" Type="Self._LOGIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_LOGIN">
+        <PropertyRef Name="COD_TIPO_LOG" />
+      </Principal>
+      <Dependent Role="_LOGIN">
+        <PropertyRef Name="COD_TIPO_LOG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MATERIALES_MARCA">
+    <End Role="MARCA_MATERIAL" Type="Self.MARCA_MATERIAL" Multiplicity="0..1" />
+    <End Role="MATERIALES" Type="Self.MATERIALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MARCA_MATERIAL">
+        <PropertyRef Name="COD_MARCA" />
+      </Principal>
+      <Dependent Role="MATERIALES">
+        <PropertyRef Name="COD_MARCA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_ATENCION_AUTO">
+    <End Role="_AUTO" Type="Self._AUTO" Multiplicity="1" />
+    <End Role="ORDEN_ATENCION" Type="Self.ORDEN_ATENCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_AUTO">
+        <PropertyRef Name="PLACA" />
+      </Principal>
+      <Dependent Role="ORDEN_ATENCION">
+        <PropertyRef Name="PLACA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_ATENCION_CLIENTE">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="ORDEN_ATENCION" Type="Self.ORDEN_ATENCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="DNI" />
+      </Principal>
+      <Dependent Role="ORDEN_ATENCION">
+        <PropertyRef Name="DNI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_ATENCION_MATERIALES">
+    <End Role="MATERIALES" Type="Self.MATERIALES" Multiplicity="1" />
+    <End Role="ORDEN_COMPRA" Type="Self.ORDEN_COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MATERIALES">
+        <PropertyRef Name="COD_MATE" />
+      </Principal>
+      <Dependent Role="ORDEN_COMPRA">
+        <PropertyRef Name="COD_MATE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_COMPRA_PROVEEDOR">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="ORDEN_COMPRA" Type="Self.ORDEN_COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="RUC" />
+      </Principal>
+      <Dependent Role="ORDEN_COMPRA">
+        <PropertyRef Name="RUC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REGISTRAR_SERVICIO_MATERIALES">
+    <End Role="MATERIALES" Type="Self.MATERIALES" Multiplicity="1" />
+    <End Role="REGISTRAR_SERVICIO" Type="Self.REGISTRAR_SERVICIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MATERIALES">
+        <PropertyRef Name="COD_MATE" />
+      </Principal>
+      <Dependent Role="REGISTRAR_SERVICIO">
+        <PropertyRef Name="COD_MATE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REGISTRAR_SERVICIO_SERVICIO">
+    <End Role="SERVICIO" Type="Self.SERVICIO" Multiplicity="1" />
+    <End Role="REGISTRAR_SERVICIO" Type="Self.REGISTRAR_SERVICIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVICIO">
+        <PropertyRef Name="COD_SERVICIO" />
+      </Principal>
+      <Dependent Role="REGISTRAR_SERVICIO">
+        <PropertyRef Name="COD_SERVICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICIO_TIPO_AUTO">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="_AUTO" Type="Self._AUTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="DNI" />
+      </Principal>
+      <Dependent Role="_AUTO">
+        <PropertyRef Name="DNI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERVICIO_TIPO_SERVICIO">
+    <End Role="TIPO_SERVICIO" Type="Self.TIPO_SERVICIO" Multiplicity="1" />
+    <End Role="SERVICIO" Type="Self.SERVICIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_SERVICIO">
+        <PropertyRef Name="COD_TIPO_SERV" />
+      </Principal>
+      <Dependent Role="SERVICIO">
+        <PropertyRef Name="COD_TIPO_SERV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VENTAS_DIARIAS_AUTO">
+    <End Role="_AUTO" Type="Self._AUTO" Multiplicity="1" />
+    <End Role="VENTAS_DIARIAS" Type="Self.VENTAS_DIARIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="_AUTO">
+        <PropertyRef Name="PLACA" />
+      </Principal>
+      <Dependent Role="VENTAS_DIARIAS">
+        <PropertyRef Name="PLACA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VENTAS_DIARIAS_CLIENTE">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="VENTAS_DIARIAS" Type="Self.VENTAS_DIARIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="DNI" />
+      </Principal>
+      <Dependent Role="VENTAS_DIARIAS">
+        <PropertyRef Name="DNI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VENTAS_DIARIAS_ORDEN_ATENCION">
+    <End Role="ORDEN_ATENCION" Type="Self.ORDEN_ATENCION" Multiplicity="1" />
+    <End Role="VENTAS_DIARIAS" Type="Self.VENTAS_DIARIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDEN_ATENCION">
+        <PropertyRef Name="COD_ORDEN_ATENCION" />
+      </Principal>
+      <Dependent Role="VENTAS_DIARIAS">
+        <PropertyRef Name="COD_ORDEN_ATENCION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CARWASHModelStoreContainer">
+    <EntitySet Name="_AUTO" EntityType="Self._AUTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="_LOGIN" EntityType="Self._LOGIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COMPROBANTE_PAGO" EntityType="Self.COMPROBANTE_PAGO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MARCA_MATERIAL" EntityType="Self.MARCA_MATERIAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MATERIALES" EntityType="Self.MATERIALES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDEN_ATENCION" EntityType="Self.ORDEN_ATENCION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SERVICIO" EntityType="Self.SERVICIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_COMPROBANTE" EntityType="Self.TIPO_COMPROBANTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_EMPLEADO" EntityType="Self.TIPO_EMPLEADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_LOGIN" EntityType="Self.TIPO_LOGIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_SERVICIO" EntityType="Self.TIPO_SERVICIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VENTAS_DIARIAS" EntityType="Self.VENTAS_DIARIAS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DETALLE_ORDEN_ATENCION" EntityType="Self.DETALLE_ORDEN_ATENCION" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DETALLE_ORDEN_ATENCION].[COD_MATE] AS [COD_MATE], 
+    [DETALLE_ORDEN_ATENCION].[PLACA] AS [PLACA], 
+    [DETALLE_ORDEN_ATENCION].[COD_ORDEN_ATENCION] AS [COD_ORDEN_ATENCION], 
+    [DETALLE_ORDEN_ATENCION].[DNI] AS [DNI]
+    FROM [dbo].[DETALLE_ORDEN_ATENCION] AS [DETALLE_ORDEN_ATENCION]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ORDEN_COMPRA" EntityType="Self.ORDEN_COMPRA" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ORDEN_COMPRA].[COD_MATE] AS [COD_MATE], 
+    [ORDEN_COMPRA].[RUC] AS [RUC], 
+    [ORDEN_COMPRA].[CANTIDAD] AS [CANTIDAD], 
+    [ORDEN_COMPRA].[SUBTOTAL] AS [SUBTOTAL]
+    FROM [dbo].[ORDEN_COMPRA] AS [ORDEN_COMPRA]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="REGISTRAR_SERVICIO" EntityType="Self.REGISTRAR_SERVICIO" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [REGISTRAR_SERVICIO].[COD_MATE] AS [COD_MATE], 
+    [REGISTRAR_SERVICIO].[COD_SERVICIO] AS [COD_SERVICIO], 
+    [REGISTRAR_SERVICIO].[CANTIDAD] AS [CANTIDAD]
+    FROM [dbo].[REGISTRAR_SERVICIO] AS [REGISTRAR_SERVICIO]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_COMPROBANTE_PAGO_AUTO" Association="Self.FK_COMPROBANTE_PAGO_AUTO">
+      <End Role="_AUTO" EntitySet="_AUTO" />
+      <End Role="COMPROBANTE_PAGO" EntitySet="COMPROBANTE_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPROBANTE_PAGO_CLIENTE" Association="Self.FK_COMPROBANTE_PAGO_CLIENTE">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="COMPROBANTE_PAGO" EntitySet="COMPROBANTE_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPROBANTE_PAGO_ORDEN_ATENCION" Association="Self.FK_COMPROBANTE_PAGO_ORDEN_ATENCION">
+      <End Role="ORDEN_ATENCION" EntitySet="ORDEN_ATENCION" />
+      <End Role="COMPROBANTE_PAGO" EntitySet="COMPROBANTE_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMPROBANTE_PAGO_TIPO_COMPROBANTE" Association="Self.FK_COMPROBANTE_PAGO_TIPO_COMPROBANTE">
+      <End Role="TIPO_COMPROBANTE" EntitySet="TIPO_COMPROBANTE" />
+      <End Role="COMPROBANTE_PAGO" EntitySet="COMPROBANTE_PAGO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_ORDEN_ATENCION_AUTO" Association="Self.FK_DETALLE_ORDEN_ATENCION_AUTO">
+      <End Role="_AUTO" EntitySet="_AUTO" />
+      <End Role="DETALLE_ORDEN_ATENCION" EntitySet="DETALLE_ORDEN_ATENCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_ORDEN_ATENCION_CLIENTE" Association="Self.FK_DETALLE_ORDEN_ATENCION_CLIENTE">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="DETALLE_ORDEN_ATENCION" EntitySet="DETALLE_ORDEN_ATENCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_ORDEN_ATENCION_MATERIALES" Association="Self.FK_DETALLE_ORDEN_ATENCION_MATERIALES">
+      <End Role="MATERIALES" EntitySet="MATERIALES" />
+      <End Role="DETALLE_ORDEN_ATENCION" EntitySet="DETALLE_ORDEN_ATENCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_ORDEN_ATENCION_ORDEN_ATENCION" Association="Self.FK_DETALLE_ORDEN_ATENCION_ORDEN_ATENCION">
+      <End Role="ORDEN_ATENCION" EntitySet="ORDEN_ATENCION" />
+      <End Role="DETALLE_ORDEN_ATENCION" EntitySet="DETALLE_ORDEN_ATENCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLEADO_TIPO_EMPLEADO" Association="Self.FK_EMPLEADO_TIPO_EMPLEADO">
+      <End Role="TIPO_EMPLEADO" EntitySet="TIPO_EMPLEADO" />
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LOGIN_COD_TIPO_LOG" Association="Self.FK_LOGIN_COD_TIPO_LOG">
+      <End Role="TIPO_LOGIN" EntitySet="TIPO_LOGIN" />
+      <End Role="_LOGIN" EntitySet="_LOGIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MATERIALES_MARCA" Association="Self.FK_MATERIALES_MARCA">
+      <End Role="MARCA_MATERIAL" EntitySet="MARCA_MATERIAL" />
+      <End Role="MATERIALES" EntitySet="MATERIALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_ATENCION_AUTO" Association="Self.FK_ORDEN_ATENCION_AUTO">
+      <End Role="_AUTO" EntitySet="_AUTO" />
+      <End Role="ORDEN_ATENCION" EntitySet="ORDEN_ATENCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_ATENCION_CLIENTE" Association="Self.FK_ORDEN_ATENCION_CLIENTE">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="ORDEN_ATENCION" EntitySet="ORDEN_ATENCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_ATENCION_MATERIALES" Association="Self.FK_ORDEN_ATENCION_MATERIALES">
+      <End Role="MATERIALES" EntitySet="MATERIALES" />
+      <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_COMPRA_PROVEEDOR" Association="Self.FK_ORDEN_COMPRA_PROVEEDOR">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REGISTRAR_SERVICIO_MATERIALES" Association="Self.FK_REGISTRAR_SERVICIO_MATERIALES">
+      <End Role="MATERIALES" EntitySet="MATERIALES" />
+      <End Role="REGISTRAR_SERVICIO" EntitySet="REGISTRAR_SERVICIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REGISTRAR_SERVICIO_SERVICIO" Association="Self.FK_REGISTRAR_SERVICIO_SERVICIO">
+      <End Role="SERVICIO" EntitySet="SERVICIO" />
+      <End Role="REGISTRAR_SERVICIO" EntitySet="REGISTRAR_SERVICIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICIO_TIPO_AUTO" Association="Self.FK_SERVICIO_TIPO_AUTO">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="_AUTO" EntitySet="_AUTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERVICIO_TIPO_SERVICIO" Association="Self.FK_SERVICIO_TIPO_SERVICIO">
+      <End Role="TIPO_SERVICIO" EntitySet="TIPO_SERVICIO" />
+      <End Role="SERVICIO" EntitySet="SERVICIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VENTAS_DIARIAS_AUTO" Association="Self.FK_VENTAS_DIARIAS_AUTO">
+      <End Role="_AUTO" EntitySet="_AUTO" />
+      <End Role="VENTAS_DIARIAS" EntitySet="VENTAS_DIARIAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VENTAS_DIARIAS_CLIENTE" Association="Self.FK_VENTAS_DIARIAS_CLIENTE">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="VENTAS_DIARIAS" EntitySet="VENTAS_DIARIAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VENTAS_DIARIAS_ORDEN_ATENCION" Association="Self.FK_VENTAS_DIARIAS_ORDEN_ATENCION">
+      <End Role="ORDEN_ATENCION" EntitySet="ORDEN_ATENCION" />
+      <End Role="VENTAS_DIARIAS" EntitySet="VENTAS_DIARIAS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

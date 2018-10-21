@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7865ea2b667248468df77fcbd642c954" Name="Diagram1">
+        <EntityTypeShape EntityType="CARWASHModel.C_AUTO" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.C_LOGIN" Width="1.5" PointX="13" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.CLIENTE" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.COMPROBANTE_PAGO" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.EMPLEADO" Width="1.5" PointX="15" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.MARCA_MATERIAL" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.MATERIALE" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.ORDEN_ATENCION" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.PROVEEDOR" Width="1.5" PointX="8.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.SERVICIO" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.sysdiagram" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.TIPO_COMPROBANTE" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.TIPO_EMPLEADO" Width="1.5" PointX="12.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.TIPO_LOGIN" Width="1.5" PointX="10.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.TIPO_SERVICIO" Width="1.5" PointX="6" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.VENTAS_DIARIAS" Width="1.5" PointX="13.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.DETALLE_ORDEN_ATENCION" Width="1.5" PointX="10.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.ORDEN_COMPRA" Width="1.5" PointX="10.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARWASHModel.REGISTRAR_SERVICIO" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CARWASHModel.FK_COMPROBANTE_PAGO_AUTO" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_DETALLE_ORDEN_ATENCION_AUTO" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_ORDEN_ATENCION_AUTO" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_SERVICIO_TIPO_AUTO" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_VENTAS_DIARIAS_AUTO" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_LOGIN_COD_TIPO_LOG" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_COMPROBANTE_PAGO_CLIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_DETALLE_ORDEN_ATENCION_CLIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_ORDEN_ATENCION_CLIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_VENTAS_DIARIAS_CLIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_COMPROBANTE_PAGO_ORDEN_ATENCION" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_COMPROBANTE_PAGO_TIPO_COMPROBANTE" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_EMPLEADO_TIPO_EMPLEADO" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_MATERIALES_MARCA" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_DETALLE_ORDEN_ATENCION_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_ORDEN_ATENCION_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_REGISTRAR_SERVICIO_MATERIALES" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_DETALLE_ORDEN_ATENCION_ORDEN_ATENCION" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_VENTAS_DIARIAS_ORDEN_ATENCION" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_ORDEN_COMPRA_PROVEEDOR" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_REGISTRAR_SERVICIO_SERVICIO" ManuallyRouted="false" />
+        <AssociationConnector Association="CARWASHModel.FK_SERVICIO_TIPO_SERVICIO" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
