@@ -20,7 +20,7 @@ namespace WebApplication1.Models
             this.ORDEN_COMPRA = new HashSet<ORDEN_COMPRA>();
         }
     
-        public int RUC { get; set; }
+        public long RUC { get; set; }
         public string RAZON_SOCIAL { get; set; }
         public Nullable<int> TELEFONO { get; set; }
         public string DIRECCION { get; set; }

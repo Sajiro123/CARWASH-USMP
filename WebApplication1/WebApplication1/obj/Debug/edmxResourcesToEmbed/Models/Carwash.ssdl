@@ -30,6 +30,27 @@
     <Property Name="CORREO" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="TELEFONO" Type="numeric" Precision="20" Scale="0" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CARWASH.dbo.CLIENTE_AUTO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="CLIENTE_AUTO">
+    <Key>
+      <PropertyRef Name="DNI" />
+      <PropertyRef Name="APELLIDO" />
+      <PropertyRef Name="CORREO" />
+      <PropertyRef Name="PLACA" />
+      <PropertyRef Name="MARCA" />
+    </Key>
+    <Property Name="DNI" Type="int" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="20" />
+    <Property Name="APELLIDO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CORREO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TELEFONO" Type="numeric" Precision="20" Scale="0" />
+    <Property Name="PLACA" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MARCA" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="MODELO" Type="varchar" MaxLength="30" />
+    <Property Name="CLASE" Type="varchar" MaxLength="20" />
+    <Property Name="NUM_ASI" Type="int" />
+  </EntityType>
   <EntityType Name="COMPROBANTE_PAGO">
     <Key>
       <PropertyRef Name="COD_COMPROBANTE" />
@@ -80,6 +101,21 @@ advertencia 6002: La tabla o vista 'CARWASH.dbo.DETALLE_ORDEN_ATENCION' no tiene
     <Property Name="COD_MARCA" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CARWASH.dbo.MATERIAL_MARCA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="MATERIAL_MARCA">
+    <Key>
+      <PropertyRef Name="COD_MATE" />
+      <PropertyRef Name="DESCRIPCION" />
+      <PropertyRef Name="DESCRIPCION1" />
+    </Key>
+    <Property Name="COD_MATE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="COD_MARCA" Type="varchar" MaxLength="20" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PRECI_UNI" Type="float" />
+    <Property Name="FECHA_INGRESO" Type="date" />
+    <Property Name="DESCRIPCION1" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="MATERIALES">
     <Key>
       <PropertyRef Name="COD_MATE" />
@@ -106,7 +142,7 @@ advertencia 6002: La tabla o vista 'CARWASH.dbo.ORDEN_COMPRA' no tiene definida 
       <PropertyRef Name="RUC" />
     </Key>
     <Property Name="COD_MATE" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="RUC" Type="int" Nullable="false" />
+    <Property Name="RUC" Type="bigint" Nullable="false" />
     <Property Name="CANTIDAD" Type="int" />
     <Property Name="SUBTOTAL" Type="float" />
   </EntityType>
@@ -114,7 +150,7 @@ advertencia 6002: La tabla o vista 'CARWASH.dbo.ORDEN_COMPRA' no tiene definida 
     <Key>
       <PropertyRef Name="RUC" />
     </Key>
-    <Property Name="RUC" Type="int" Nullable="false" />
+    <Property Name="RUC" Type="bigint" Nullable="false" />
     <Property Name="RAZON_SOCIAL" Type="varchar" MaxLength="50" />
     <Property Name="TELEFONO" Type="int" />
     <Property Name="DIRECCION" Type="varchar" MaxLength="50" />
@@ -137,20 +173,10 @@ advertencia 6002: La tabla o vista 'CARWASH.dbo.REGISTRAR_SERVICIO' no tiene def
     </Key>
     <Property Name="COD_SERVICIO" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="COD_TIPO_SERV" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="NOMBRE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
     <Property Name="PRECIO" Type="float" />
     <Property Name="DURACION" Type="smalldatetime" Nullable="false" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="TIPO_COMPROBANTE">
     <Key>
@@ -178,7 +204,7 @@ advertencia 6002: La tabla o vista 'CARWASH.dbo.REGISTRAR_SERVICIO' no tiene def
       <PropertyRef Name="COD_TIPO_SERV" />
     </Key>
     <Property Name="COD_TIPO_SERV" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="NOMBRE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="VENTAS_DIARIAS">
@@ -472,12 +498,25 @@ advertencia 6002: La tabla o vista 'CARWASH.dbo.REGISTRAR_SERVICIO' no tiene def
     <EntitySet Name="ORDEN_ATENCION" EntityType="Self.ORDEN_ATENCION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SERVICIO" EntityType="Self.SERVICIO" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIPO_COMPROBANTE" EntityType="Self.TIPO_COMPROBANTE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIPO_EMPLEADO" EntityType="Self.TIPO_EMPLEADO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIPO_LOGIN" EntityType="Self.TIPO_LOGIN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIPO_SERVICIO" EntityType="Self.TIPO_SERVICIO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VENTAS_DIARIAS" EntityType="Self.VENTAS_DIARIAS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENTE_AUTO" EntityType="Self.CLIENTE_AUTO" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CLIENTE_AUTO].[DNI] AS [DNI], 
+    [CLIENTE_AUTO].[NOMBRE] AS [NOMBRE], 
+    [CLIENTE_AUTO].[APELLIDO] AS [APELLIDO], 
+    [CLIENTE_AUTO].[CORREO] AS [CORREO], 
+    [CLIENTE_AUTO].[TELEFONO] AS [TELEFONO], 
+    [CLIENTE_AUTO].[PLACA] AS [PLACA], 
+    [CLIENTE_AUTO].[MARCA] AS [MARCA], 
+    [CLIENTE_AUTO].[MODELO] AS [MODELO], 
+    [CLIENTE_AUTO].[CLASE] AS [CLASE], 
+    [CLIENTE_AUTO].[NUM_ASI] AS [NUM_ASI]
+    FROM [dbo].[CLIENTE_AUTO] AS [CLIENTE_AUTO]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="DETALLE_ORDEN_ATENCION" EntityType="Self.DETALLE_ORDEN_ATENCION" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [DETALLE_ORDEN_ATENCION].[COD_MATE] AS [COD_MATE], 
@@ -485,6 +524,16 @@ advertencia 6002: La tabla o vista 'CARWASH.dbo.REGISTRAR_SERVICIO' no tiene def
     [DETALLE_ORDEN_ATENCION].[COD_ORDEN_ATENCION] AS [COD_ORDEN_ATENCION], 
     [DETALLE_ORDEN_ATENCION].[DNI] AS [DNI]
     FROM [dbo].[DETALLE_ORDEN_ATENCION] AS [DETALLE_ORDEN_ATENCION]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MATERIAL_MARCA" EntityType="Self.MATERIAL_MARCA" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MATERIAL_MARCA].[COD_MATE] AS [COD_MATE], 
+    [MATERIAL_MARCA].[COD_MARCA] AS [COD_MARCA], 
+    [MATERIAL_MARCA].[DESCRIPCION] AS [DESCRIPCION], 
+    [MATERIAL_MARCA].[PRECI_UNI] AS [PRECI_UNI], 
+    [MATERIAL_MARCA].[FECHA_INGRESO] AS [FECHA_INGRESO], 
+    [MATERIAL_MARCA].[DESCRIPCION1] AS [DESCRIPCION1]
+    FROM [dbo].[MATERIAL_MARCA] AS [MATERIAL_MARCA]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="ORDEN_COMPRA" EntityType="Self.ORDEN_COMPRA" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 

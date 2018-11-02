@@ -18,7 +18,7 @@ namespace WebApplication1.Models
         public string COD_SERVICIO { get; set; }
         public int CANTIDAD { get; set; }
     
-        public virtual MATERIALE MATERIALE { get; set; }
+        public virtual MATERIALES MATERIALES { get; set; }
         public virtual SERVICIO SERVICIO { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CARWASHModelStoreContainer" CdmEntityContainer="CARWASHEntities">
+  <EntityContainerMapping StorageEntityContainer="CARWASHModelStoreContainer" CdmEntityContainer="CARWASHEntities5">
     <EntitySetMapping Name="C_AUTO">
       <EntityTypeMapping TypeName="CARWASHModel.C_AUTO">
         <MappingFragment StoreEntitySet="_AUTO">
@@ -23,7 +23,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CLIENTEs">
+    <EntitySetMapping Name="CLIENTE">
       <EntityTypeMapping TypeName="CARWASHModel.CLIENTE">
         <MappingFragment StoreEntitySet="CLIENTE">
           <ScalarProperty Name="DNI" ColumnName="DNI" />
@@ -51,7 +51,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EMPLEADOes">
+    <EntitySetMapping Name="EMPLEADO">
       <EntityTypeMapping TypeName="CARWASHModel.EMPLEADO">
         <MappingFragment StoreEntitySet="EMPLEADO">
           <ScalarProperty Name="COD_EMP" ColumnName="COD_EMP" />
@@ -74,7 +74,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MATERIALES">
-      <EntityTypeMapping TypeName="CARWASHModel.MATERIALE">
+      <EntityTypeMapping TypeName="CARWASHModel.MATERIALES">
         <MappingFragment StoreEntitySet="MATERIALES">
           <ScalarProperty Name="COD_MATE" ColumnName="COD_MATE" />
           <ScalarProperty Name="COD_MARCA" ColumnName="COD_MARCA" />
@@ -93,7 +93,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PROVEEDORs">
+    <EntitySetMapping Name="PROVEEDOR">
       <EntityTypeMapping TypeName="CARWASHModel.PROVEEDOR">
         <MappingFragment StoreEntitySet="PROVEEDOR">
           <ScalarProperty Name="RUC" ColumnName="RUC" />
@@ -103,7 +103,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SERVICIOs">
+    <EntitySetMapping Name="SERVICIO">
       <EntityTypeMapping TypeName="CARWASHModel.SERVICIO">
         <MappingFragment StoreEntitySet="SERVICIO">
           <ScalarProperty Name="COD_SERVICIO" ColumnName="COD_SERVICIO" />
@@ -112,17 +112,6 @@
           <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
           <ScalarProperty Name="DURACION" ColumnName="DURACION" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="CARWASHModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -176,6 +165,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTE_AUTO">
+      <EntityTypeMapping TypeName="CARWASHModel.CLIENTE_AUTO">
+        <MappingFragment StoreEntitySet="CLIENTE_AUTO">
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+          <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="PLACA" ColumnName="PLACA" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+          <ScalarProperty Name="CLASE" ColumnName="CLASE" />
+          <ScalarProperty Name="NUM_ASI" ColumnName="NUM_ASI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="DETALLE_ORDEN_ATENCION">
       <EntityTypeMapping TypeName="CARWASHModel.DETALLE_ORDEN_ATENCION">
         <MappingFragment StoreEntitySet="DETALLE_ORDEN_ATENCION">
@@ -183,6 +188,18 @@
           <ScalarProperty Name="PLACA" ColumnName="PLACA" />
           <ScalarProperty Name="COD_ORDEN_ATENCION" ColumnName="COD_ORDEN_ATENCION" />
           <ScalarProperty Name="DNI" ColumnName="DNI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MATERIAL_MARCA">
+      <EntityTypeMapping TypeName="CARWASHModel.MATERIAL_MARCA">
+        <MappingFragment StoreEntitySet="MATERIAL_MARCA">
+          <ScalarProperty Name="COD_MATE" ColumnName="COD_MATE" />
+          <ScalarProperty Name="COD_MARCA" ColumnName="COD_MARCA" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="PRECI_UNI" ColumnName="PRECI_UNI" />
+          <ScalarProperty Name="FECHA_INGRESO" ColumnName="FECHA_INGRESO" />
+          <ScalarProperty Name="DESCRIPCION1" ColumnName="DESCRIPCION1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

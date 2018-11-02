@@ -17,7 +17,7 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TIPO_SERVICIO()
         {
-            this.SERVICIOs = new HashSet<SERVICIO>();
+            this.SERVICIO = new HashSet<SERVICIO>();
         }
     
         public string COD_TIPO_SERV { get; set; }
@@ -25,6 +25,6 @@ namespace WebApplication1.Models
         public string DESCRIPCION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SERVICIO> SERVICIOs { get; set; }
+        public virtual ICollection<SERVICIO> SERVICIO { get; set; }
     }
 }

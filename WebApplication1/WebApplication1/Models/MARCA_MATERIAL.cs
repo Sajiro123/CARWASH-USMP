@@ -17,13 +17,13 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MARCA_MATERIAL()
         {
-            this.MATERIALES = new HashSet<MATERIALE>();
+            this.MATERIALES = new HashSet<MATERIALES>();
         }
     
         public string COD_MARCA { get; set; }
         public string DESCRIPCION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MATERIALE> MATERIALES { get; set; }
+        public virtual ICollection<MATERIALES> MATERIALES { get; set; }
     }
 }

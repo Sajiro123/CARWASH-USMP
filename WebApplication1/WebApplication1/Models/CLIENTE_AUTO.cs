@@ -12,18 +12,17 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TIPO_EMPLEADO
+    public partial class CLIENTE_AUTO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TIPO_EMPLEADO()
-        {
-            this.EMPLEADO = new HashSet<EMPLEADO>();
-        }
-    
-        public string COD_TIPO_EMP { get; set; }
+        public int DNI { get; set; }
         public string NOMBRE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EMPLEADO> EMPLEADO { get; set; }
+        public string APELLIDO { get; set; }
+        public string CORREO { get; set; }
+        public Nullable<decimal> TELEFONO { get; set; }
+        public string PLACA { get; set; }
+        public string MARCA { get; set; }
+        public string MODELO { get; set; }
+        public string CLASE { get; set; }
+        public Nullable<int> NUM_ASI { get; set; }
     }
 }

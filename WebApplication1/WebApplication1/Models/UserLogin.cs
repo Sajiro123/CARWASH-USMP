@@ -11,9 +11,9 @@ namespace WebApplication1.Models
         public string _PASSWORD { get; set; }
         public string COD_TIPO_LOG { get; set; }
 
- 
 
-        CARWASHEntities user = new CARWASHEntities();
+
+        CARWASHEntities5 user = new CARWASHEntities5();
 
         public bool login_Cli()
         {

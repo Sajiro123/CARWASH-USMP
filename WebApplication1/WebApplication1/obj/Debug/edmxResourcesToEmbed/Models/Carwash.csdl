@@ -83,7 +83,7 @@
     <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="MATERIALES" Relationship="Self.FK_MATERIALES_MARCA" FromRole="MARCA_MATERIAL" ToRole="MATERIALES" />
   </EntityType>
-  <EntityType Name="MATERIALE">
+  <EntityType Name="MATERIALES">
     <Key>
       <PropertyRef Name="COD_MATE" />
     </Key>
@@ -114,7 +114,7 @@
     <Key>
       <PropertyRef Name="RUC" />
     </Key>
-    <Property Name="RUC" Type="Int32" Nullable="false" />
+    <Property Name="RUC" Type="Int64" Nullable="false" />
     <Property Name="RAZON_SOCIAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="TELEFONO" Type="Int32" />
     <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -126,22 +126,12 @@
     </Key>
     <Property Name="COD_SERVICIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="COD_TIPO_SERV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PRECIO" Type="Double" />
     <Property Name="DURACION" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="REGISTRAR_SERVICIO" Relationship="Self.FK_REGISTRAR_SERVICIO_SERVICIO" FromRole="SERVICIO" ToRole="REGISTRAR_SERVICIO" />
     <NavigationProperty Name="TIPO_SERVICIO" Relationship="Self.FK_SERVICIO_TIPO_SERVICIO" FromRole="SERVICIO" ToRole="TIPO_SERVICIO" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TIPO_COMPROBANTE">
     <Key>
@@ -157,7 +147,7 @@
     </Key>
     <Property Name="COD_TIPO_EMP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="EMPLEADOes" Relationship="Self.FK_EMPLEADO_TIPO_EMPLEADO" FromRole="TIPO_EMPLEADO" ToRole="EMPLEADO" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_EMPLEADO_TIPO_EMPLEADO" FromRole="TIPO_EMPLEADO" ToRole="EMPLEADO" />
   </EntityType>
   <EntityType Name="TIPO_LOGIN">
     <Key>
@@ -172,9 +162,9 @@
       <PropertyRef Name="COD_TIPO_SERV" />
     </Key>
     <Property Name="COD_TIPO_SERV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="SERVICIOs" Relationship="Self.FK_SERVICIO_TIPO_SERVICIO" FromRole="TIPO_SERVICIO" ToRole="SERVICIO" />
+    <NavigationProperty Name="SERVICIO" Relationship="Self.FK_SERVICIO_TIPO_SERVICIO" FromRole="TIPO_SERVICIO" ToRole="SERVICIO" />
   </EntityType>
   <EntityType Name="VENTAS_DIARIAS">
     <Key>
@@ -195,6 +185,25 @@
     <NavigationProperty Name="CLIENTE" Relationship="Self.FK_VENTAS_DIARIAS_CLIENTE" FromRole="VENTAS_DIARIAS" ToRole="CLIENTE" />
     <NavigationProperty Name="ORDEN_ATENCION" Relationship="Self.FK_VENTAS_DIARIAS_ORDEN_ATENCION" FromRole="VENTAS_DIARIAS" ToRole="ORDEN_ATENCION" />
   </EntityType>
+  <EntityType Name="CLIENTE_AUTO">
+    <Key>
+      <PropertyRef Name="DNI" />
+      <PropertyRef Name="APELLIDO" />
+      <PropertyRef Name="CORREO" />
+      <PropertyRef Name="PLACA" />
+      <PropertyRef Name="MARCA" />
+    </Key>
+    <Property Name="DNI" Type="Int32" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CORREO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TELEFONO" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="PLACA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MARCA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MODELO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CLASE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NUM_ASI" Type="Int32" />
+  </EntityType>
   <EntityType Name="DETALLE_ORDEN_ATENCION">
     <Key>
       <PropertyRef Name="COD_MATE" />
@@ -208,8 +217,21 @@
     <Property Name="DNI" Type="Int32" Nullable="false" />
     <NavigationProperty Name="C_AUTO" Relationship="Self.FK_DETALLE_ORDEN_ATENCION_AUTO" FromRole="DETALLE_ORDEN_ATENCION" ToRole="C_AUTO" />
     <NavigationProperty Name="CLIENTE" Relationship="Self.FK_DETALLE_ORDEN_ATENCION_CLIENTE" FromRole="DETALLE_ORDEN_ATENCION" ToRole="CLIENTE" />
-    <NavigationProperty Name="MATERIALE" Relationship="Self.FK_DETALLE_ORDEN_ATENCION_MATERIALES" FromRole="DETALLE_ORDEN_ATENCION" ToRole="MATERIALES" />
+    <NavigationProperty Name="MATERIALES" Relationship="Self.FK_DETALLE_ORDEN_ATENCION_MATERIALES" FromRole="DETALLE_ORDEN_ATENCION" ToRole="MATERIALES" />
     <NavigationProperty Name="ORDEN_ATENCION" Relationship="Self.FK_DETALLE_ORDEN_ATENCION_ORDEN_ATENCION" FromRole="DETALLE_ORDEN_ATENCION" ToRole="ORDEN_ATENCION" />
+  </EntityType>
+  <EntityType Name="MATERIAL_MARCA">
+    <Key>
+      <PropertyRef Name="COD_MATE" />
+      <PropertyRef Name="DESCRIPCION" />
+      <PropertyRef Name="DESCRIPCION1" />
+    </Key>
+    <Property Name="COD_MATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="COD_MARCA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRECI_UNI" Type="Double" />
+    <Property Name="FECHA_INGRESO" Type="DateTime" Precision="0" />
+    <Property Name="DESCRIPCION1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityType Name="ORDEN_COMPRA">
     <Key>
@@ -217,10 +239,10 @@
       <PropertyRef Name="RUC" />
     </Key>
     <Property Name="COD_MATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="RUC" Type="Int32" Nullable="false" />
+    <Property Name="RUC" Type="Int64" Nullable="false" />
     <Property Name="CANTIDAD" Type="Int32" />
     <Property Name="SUBTOTAL" Type="Double" />
-    <NavigationProperty Name="MATERIALE" Relationship="Self.FK_ORDEN_ATENCION_MATERIALES" FromRole="ORDEN_COMPRA" ToRole="MATERIALES" />
+    <NavigationProperty Name="MATERIALES" Relationship="Self.FK_ORDEN_ATENCION_MATERIALES" FromRole="ORDEN_COMPRA" ToRole="MATERIALES" />
     <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_ORDEN_COMPRA_PROVEEDOR" FromRole="ORDEN_COMPRA" ToRole="PROVEEDOR" />
   </EntityType>
   <EntityType Name="REGISTRAR_SERVICIO">
@@ -232,7 +254,7 @@
     <Property Name="COD_MATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="COD_SERVICIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="MATERIALE" Relationship="Self.FK_REGISTRAR_SERVICIO_MATERIALES" FromRole="REGISTRAR_SERVICIO" ToRole="MATERIALES" />
+    <NavigationProperty Name="MATERIALES" Relationship="Self.FK_REGISTRAR_SERVICIO_MATERIALES" FromRole="REGISTRAR_SERVICIO" ToRole="MATERIALES" />
     <NavigationProperty Name="SERVICIO" Relationship="Self.FK_REGISTRAR_SERVICIO_SERVICIO" FromRole="REGISTRAR_SERVICIO" ToRole="SERVICIO" />
   </EntityType>
   <Association Name="FK_COMPROBANTE_PAGO_AUTO">
@@ -393,7 +415,7 @@
   </Association>
   <Association Name="FK_MATERIALES_MARCA">
     <End Role="MARCA_MATERIAL" Type="Self.MARCA_MATERIAL" Multiplicity="0..1" />
-    <End Role="MATERIALES" Type="Self.MATERIALE" Multiplicity="*" />
+    <End Role="MATERIALES" Type="Self.MATERIALES" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MARCA_MATERIAL">
         <PropertyRef Name="COD_MARCA" />
@@ -404,7 +426,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DETALLE_ORDEN_ATENCION_MATERIALES">
-    <End Role="MATERIALES" Type="Self.MATERIALE" Multiplicity="1" />
+    <End Role="MATERIALES" Type="Self.MATERIALES" Multiplicity="1" />
     <End Role="DETALLE_ORDEN_ATENCION" Type="Self.DETALLE_ORDEN_ATENCION" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MATERIALES">
@@ -416,7 +438,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ORDEN_ATENCION_MATERIALES">
-    <End Role="MATERIALES" Type="Self.MATERIALE" Multiplicity="1" />
+    <End Role="MATERIALES" Type="Self.MATERIALES" Multiplicity="1" />
     <End Role="ORDEN_COMPRA" Type="Self.ORDEN_COMPRA" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MATERIALES">
@@ -428,7 +450,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_REGISTRAR_SERVICIO_MATERIALES">
-    <End Role="MATERIALES" Type="Self.MATERIALE" Multiplicity="1" />
+    <End Role="MATERIALES" Type="Self.MATERIALES" Multiplicity="1" />
     <End Role="REGISTRAR_SERVICIO" Type="Self.REGISTRAR_SERVICIO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MATERIALES">
@@ -499,24 +521,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CARWASHEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="CARWASHEntities5" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C_AUTO" EntityType="Self.C_AUTO" />
     <EntitySet Name="C_LOGIN" EntityType="Self.C_LOGIN" />
-    <EntitySet Name="CLIENTEs" EntityType="Self.CLIENTE" />
+    <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
     <EntitySet Name="COMPROBANTE_PAGO" EntityType="Self.COMPROBANTE_PAGO" />
-    <EntitySet Name="EMPLEADOes" EntityType="Self.EMPLEADO" />
+    <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" />
     <EntitySet Name="MARCA_MATERIAL" EntityType="Self.MARCA_MATERIAL" />
-    <EntitySet Name="MATERIALES" EntityType="Self.MATERIALE" />
+    <EntitySet Name="MATERIALES" EntityType="Self.MATERIALES" />
     <EntitySet Name="ORDEN_ATENCION" EntityType="Self.ORDEN_ATENCION" />
-    <EntitySet Name="PROVEEDORs" EntityType="Self.PROVEEDOR" />
-    <EntitySet Name="SERVICIOs" EntityType="Self.SERVICIO" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" />
+    <EntitySet Name="SERVICIO" EntityType="Self.SERVICIO" />
     <EntitySet Name="TIPO_COMPROBANTE" EntityType="Self.TIPO_COMPROBANTE" />
     <EntitySet Name="TIPO_EMPLEADO" EntityType="Self.TIPO_EMPLEADO" />
     <EntitySet Name="TIPO_LOGIN" EntityType="Self.TIPO_LOGIN" />
     <EntitySet Name="TIPO_SERVICIO" EntityType="Self.TIPO_SERVICIO" />
     <EntitySet Name="VENTAS_DIARIAS" EntityType="Self.VENTAS_DIARIAS" />
+    <EntitySet Name="CLIENTE_AUTO" EntityType="Self.CLIENTE_AUTO" />
     <EntitySet Name="DETALLE_ORDEN_ATENCION" EntityType="Self.DETALLE_ORDEN_ATENCION" />
+    <EntitySet Name="MATERIAL_MARCA" EntityType="Self.MATERIAL_MARCA" />
     <EntitySet Name="ORDEN_COMPRA" EntityType="Self.ORDEN_COMPRA" />
     <EntitySet Name="REGISTRAR_SERVICIO" EntityType="Self.REGISTRAR_SERVICIO" />
     <AssociationSet Name="FK_COMPROBANTE_PAGO_AUTO" Association="Self.FK_COMPROBANTE_PAGO_AUTO">
@@ -532,7 +555,7 @@
       <End Role="ORDEN_ATENCION" EntitySet="ORDEN_ATENCION" />
     </AssociationSet>
     <AssociationSet Name="FK_SERVICIO_TIPO_AUTO" Association="Self.FK_SERVICIO_TIPO_AUTO">
-      <End Role="CLIENTE" EntitySet="CLIENTEs" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
       <End Role="C_AUTO" EntitySet="C_AUTO" />
     </AssociationSet>
     <AssociationSet Name="FK_VENTAS_DIARIAS_AUTO" Association="Self.FK_VENTAS_DIARIAS_AUTO">
@@ -544,19 +567,19 @@
       <End Role="C_LOGIN" EntitySet="C_LOGIN" />
     </AssociationSet>
     <AssociationSet Name="FK_COMPROBANTE_PAGO_CLIENTE" Association="Self.FK_COMPROBANTE_PAGO_CLIENTE">
-      <End Role="CLIENTE" EntitySet="CLIENTEs" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
       <End Role="COMPROBANTE_PAGO" EntitySet="COMPROBANTE_PAGO" />
     </AssociationSet>
     <AssociationSet Name="FK_DETALLE_ORDEN_ATENCION_CLIENTE" Association="Self.FK_DETALLE_ORDEN_ATENCION_CLIENTE">
-      <End Role="CLIENTE" EntitySet="CLIENTEs" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
       <End Role="DETALLE_ORDEN_ATENCION" EntitySet="DETALLE_ORDEN_ATENCION" />
     </AssociationSet>
     <AssociationSet Name="FK_ORDEN_ATENCION_CLIENTE" Association="Self.FK_ORDEN_ATENCION_CLIENTE">
-      <End Role="CLIENTE" EntitySet="CLIENTEs" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
       <End Role="ORDEN_ATENCION" EntitySet="ORDEN_ATENCION" />
     </AssociationSet>
     <AssociationSet Name="FK_VENTAS_DIARIAS_CLIENTE" Association="Self.FK_VENTAS_DIARIAS_CLIENTE">
-      <End Role="CLIENTE" EntitySet="CLIENTEs" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
       <End Role="VENTAS_DIARIAS" EntitySet="VENTAS_DIARIAS" />
     </AssociationSet>
     <AssociationSet Name="FK_COMPROBANTE_PAGO_ORDEN_ATENCION" Association="Self.FK_COMPROBANTE_PAGO_ORDEN_ATENCION">
@@ -569,7 +592,7 @@
     </AssociationSet>
     <AssociationSet Name="FK_EMPLEADO_TIPO_EMPLEADO" Association="Self.FK_EMPLEADO_TIPO_EMPLEADO">
       <End Role="TIPO_EMPLEADO" EntitySet="TIPO_EMPLEADO" />
-      <End Role="EMPLEADO" EntitySet="EMPLEADOes" />
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
     </AssociationSet>
     <AssociationSet Name="FK_MATERIALES_MARCA" Association="Self.FK_MATERIALES_MARCA">
       <End Role="MARCA_MATERIAL" EntitySet="MARCA_MATERIAL" />
@@ -596,16 +619,16 @@
       <End Role="VENTAS_DIARIAS" EntitySet="VENTAS_DIARIAS" />
     </AssociationSet>
     <AssociationSet Name="FK_ORDEN_COMPRA_PROVEEDOR" Association="Self.FK_ORDEN_COMPRA_PROVEEDOR">
-      <End Role="PROVEEDOR" EntitySet="PROVEEDORs" />
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
       <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
     </AssociationSet>
     <AssociationSet Name="FK_REGISTRAR_SERVICIO_SERVICIO" Association="Self.FK_REGISTRAR_SERVICIO_SERVICIO">
-      <End Role="SERVICIO" EntitySet="SERVICIOs" />
+      <End Role="SERVICIO" EntitySet="SERVICIO" />
       <End Role="REGISTRAR_SERVICIO" EntitySet="REGISTRAR_SERVICIO" />
     </AssociationSet>
     <AssociationSet Name="FK_SERVICIO_TIPO_SERVICIO" Association="Self.FK_SERVICIO_TIPO_SERVICIO">
       <End Role="TIPO_SERVICIO" EntitySet="TIPO_SERVICIO" />
-      <End Role="SERVICIO" EntitySet="SERVICIOs" />
+      <End Role="SERVICIO" EntitySet="SERVICIO" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

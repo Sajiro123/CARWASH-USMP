@@ -12,10 +12,10 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MATERIALE
+    public partial class MATERIALES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MATERIALE()
+        public MATERIALES()
         {
             this.DETALLE_ORDEN_ATENCION = new HashSet<DETALLE_ORDEN_ATENCION>();
             this.ORDEN_COMPRA = new HashSet<ORDEN_COMPRA>();

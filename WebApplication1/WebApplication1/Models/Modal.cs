@@ -5,8 +5,9 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
-    public partial class CarwashBD
+    public class Modal
     {
-
+        public string AUTO { set; get; }
+        public string CLIENTE { set; get; }
     }
 }

@@ -21,7 +21,7 @@ namespace WebApplication1.Models
     
         public virtual C_AUTO C_AUTO { get; set; }
         public virtual CLIENTE CLIENTE { get; set; }
-        public virtual MATERIALE MATERIALE { get; set; }
+        public virtual MATERIALES MATERIALES { get; set; }
         public virtual ORDEN_ATENCION ORDEN_ATENCION { get; set; }
     }
 }

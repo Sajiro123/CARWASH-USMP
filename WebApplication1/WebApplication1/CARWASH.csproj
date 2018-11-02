@@ -60,6 +60,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -152,86 +153,93 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ComprobantePagoController.cs" />
     <Compile Include="Controllers\GenerarOrdenCompraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrdenAtencionController.cs" />
+    <Compile Include="Controllers\RegistrarServicioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Carwash.Context.cs">
+    <Compile Include="Models\CARWASH.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Carwash.Context.tt</DependentUpon>
+      <DependentUpon>CARWASH.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Carwash.cs">
+    <Compile Include="Models\CARWASH.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Carwash.Designer.cs">
+    <Compile Include="Models\CARWASH.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Carwash.edmx</DependentUpon>
+      <DependentUpon>CARWASH.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\CarwashBD.cs" />
+    <Compile Include="Models\Clases BasesDatos\Auto_Cliente.cs" />
     <Compile Include="Models\CLIENTE.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CLIENTE_AUTO.cs">
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\COMPROBANTE_PAGO.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_AUTO.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_LOGIN.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DETALLE_ORDEN_ATENCION.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EMPLEADO.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Facade.cs" />
     <Compile Include="Models\MARCA_MATERIAL.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MATERIALE.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+    <Compile Include="Models\MATERIALES.cs">
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MATERIAL_MARCA.cs">
+      <DependentUpon>CARWASH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modal.cs" />
     <Compile Include="Models\ORDEN_ATENCION.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORDEN_COMPRA.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PROVEEDOR.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\REGISTRAR_SERVICIO.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SERVICIO.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_COMPROBANTE.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_EMPLEADO.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_LOGIN.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPO_SERVICIO.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\VENTAS_DIARIAS.cs">
-      <DependentUpon>Carwash.tt</DependentUpon>
+      <DependentUpon>CARWASH.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -250,24 +258,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Carwash.Context.tt">
+    <Content Include="Models\CARWASH.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Carwash.Context.cs</LastGenOutput>
-      <DependentUpon>Carwash.edmx</DependentUpon>
+      <DependentUpon>CARWASH.edmx</DependentUpon>
+      <LastGenOutput>CARWASH.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Carwash.tt">
+    <Content Include="Models\CARWASH.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Carwash.edmx</DependentUpon>
-      <LastGenOutput>Carwash.cs</LastGenOutput>
+      <DependentUpon>CARWASH.edmx</DependentUpon>
+      <LastGenOutput>CARWASH.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Carwash.edmx">
+    <EntityDeploy Include="Models\CARWASH.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Carwash.Designer.cs</LastGenOutput>
+      <LastGenOutput>CARWASH.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Carwash.edmx.diagram">
-      <DependentUpon>Carwash.edmx</DependentUpon>
+    <Content Include="Models\CARWASH.edmx.diagram">
+      <DependentUpon>CARWASH.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -275,6 +283,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -291,15 +301,18 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Index_Emp.cshtml" />
     <Content Include="Views\GenerarOrdenCompra\GenerarOrdenCompra.cshtml" />
+    <Content Include="Views\ComprobantePago\ComprobantePago.cshtml" />
+    <Content Include="Views\OrdenAtencion\OrdenAtencion.cshtml" />
+    <Content Include="Views\RegistrarServicio\RegistrarServicio.cshtml" />
+    <Content Include="Views\RegistrarServicio\Index.cshtml" />
+    <Content Include="Views\RegistrarServicio\RegistrarServicio1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\alex\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

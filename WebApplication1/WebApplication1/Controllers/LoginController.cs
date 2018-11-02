@@ -23,26 +23,27 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> Index_Emp(UserLogin datos)
+        public async Task<ActionResult> GenerarOrdenCompra(UserLogin datos)
         {
             if (ModelState.IsValid)
             {
                 if (datos.login_Cli() == true)
                 {
                     Session["C_USER"] = datos.C_USER;
-                    return View();  
+                    RedirectToAction( "GenerarOrdenCompra");
                 }
                 else
                 {
 
-                    return View("Login");
+                    return View();
                 }
 
             }
             else
             {
-                return View("Login");
+                return View();
             }
+            return View();
         }
     
  

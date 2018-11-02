@@ -1,0 +1,39 @@
+﻿@model WebApplication1.Models.Clases_BasesDatos.Auto_Cliente
+
+
+@foreach (var item in Model.AUTOs)
+{
+
+<table class="table table-bordered">
+    <tr>
+    <thead>
+     <td>placa</td>
+        <td>modelo</td>
+    </thead>
+   
+    </tr>
+    <tr>
+
+        <td>@item.PLACA</td>
+        <td>@item.MODELO</td>
+    </tr>
+</table>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <td>dni</td>
+        <td>apellido</td>
+    </tr>
+
+    @foreach (var item in Model.CLIENTEs)
+    {
+    <tr>
+
+        <td>@Html.TextBoxFor(m => item.DNI, new { @class = "form-control" })
+
+<td>@item.APELLIDO</td>
+    </tr>
+            }
+        
+    </table>

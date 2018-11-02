@@ -15,11 +15,11 @@ namespace WebApplication1.Models
     public partial class ORDEN_COMPRA
     {
         public string COD_MATE { get; set; }
-        public int RUC { get; set; }
+        public long RUC { get; set; }
         public Nullable<int> CANTIDAD { get; set; }
         public Nullable<double> SUBTOTAL { get; set; }
     
-        public virtual MATERIALE MATERIALE { get; set; }
+        public virtual MATERIALES MATERIALES { get; set; }
         public virtual PROVEEDOR PROVEEDOR { get; set; }
     }
 }

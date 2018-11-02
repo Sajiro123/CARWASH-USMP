@@ -12,12 +12,13 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class MATERIAL_MARCA
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public string COD_MATE { get; set; }
+        public string COD_MARCA { get; set; }
+        public string DESCRIPCION { get; set; }
+        public Nullable<double> PRECI_UNI { get; set; }
+        public Nullable<System.DateTime> FECHA_INGRESO { get; set; }
+        public string DESCRIPCION1 { get; set; }
     }
 }
