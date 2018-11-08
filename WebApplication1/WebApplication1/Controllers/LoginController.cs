@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
-{
+{   
     public class LoginController : Controller
     {
         // GET: Login   
@@ -23,27 +23,26 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> GenerarOrdenCompra(UserLogin datos)
+        public async Task<ActionResult> Index_Emp(UserLogin datos)
         {
             if (ModelState.IsValid)
             {
                 if (datos.login_Cli() == true)
                 {
                     Session["C_USER"] = datos.C_USER;
-                    RedirectToAction( "GenerarOrdenCompra");
+                    return View();
                 }
                 else
                 {
-
-                    return View();
+                    return View("Login");
                 }
 
             }
             else
             {
-                return View();
+                return View("Login");
             }
-            return View();
+           
         }
     
  

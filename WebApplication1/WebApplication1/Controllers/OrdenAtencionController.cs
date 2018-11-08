@@ -20,61 +20,56 @@ namespace WebApplication1.Controllers
         public ActionResult OrdenAtencion(CLIENTE DNI)
         {
 
-            var facade = new Facade();
-
-
-             string Cod = (Request["txtServicio"]);
+            //Obtener los datos ingresados por el cliente
+            string Cod = (Request["txtServicio"]);
             string Cod2 = Convert.ToString(Request["txtcod"]);
-
             string dni1 = Convert.ToString(Request["txtCliente"]);
 
-
-            if(!string.IsNullOrEmpty(dni1))
-            TempData["dni"] = dni1;
-           
+            //Obtener Datos Temporalmente para luego obtenerlos en la vista
+            if (!string.IsNullOrEmpty(dni1))
+                TempData["dni"] = dni1;
             if (!string.IsNullOrEmpty(Cod))
                 TempData["servicio"] = Cod;
-
             if (!string.IsNullOrEmpty(Cod2))
                 TempData["materiales"] = Cod2;
 
 
 
-
+            //Validar que los datos sean los correctos
             if (ModelState.IsValid)
+            {
+
+                int dni21 = Convert.ToInt32(dni1);
+                var context = new CARWASHEntities5();
+                var customer = context.CLIENTE_AUTO.FirstOrDefault(i => i.DNI == dni21);
+
+
+                if (customer == null && !string.IsNullOrEmpty(dni1))
                 {
+                    TempData["Message"] = "No enconotro Cliente ";
+                    return View();
+                }
+                else if (customer != null)
+                {
+                    int a = Convert.ToInt32(dni1);
 
-                    int dni21 = Convert.ToInt32(dni1);
-                    var context = new CARWASHEntities5();
-                    var customer = context.CLIENTE_AUTO.FirstOrDefault(i => i.DNI == dni21);
+                    var customer1 = context.CLIENTE_AUTO.FirstOrDefault(i => i.DNI == a);
 
+                    ViewData["DNI"] = customer1.DNI;
+                    ViewData["APELLIDO"] = customer1.APELLIDO;
+                    ViewData["NOMBRE"] = customer1.NOMBRE;
+                    ViewData["CORREO"] = customer1.CORREO;
+                    ViewData["TELEFONO"] = customer1.TELEFONO;
+                    ViewData["PLACA"] = customer1.PLACA;
+                    ViewData["MARCA"] = customer1.MARCA;
+                    ViewData["MODELO"] = customer1.MODELO;
+                    ViewData["CLASE"] = customer1.CLASE;
+                    ViewData["NUM_ASI"] = customer1.NUM_ASI;
 
-                    if (customer == null && !string.IsNullOrEmpty(dni1))
-                    {
-                        TempData["Message"] = "No enconotro Cliente ";
-                        return View();
-                    }
-                    else if (customer != null)
-                    {
-                        int a = Convert.ToInt32(dni1);
-
-                        var customer1 = context.CLIENTE_AUTO.FirstOrDefault(i => i.DNI == a);
-
-                        ViewData["DNI"] = customer1.DNI;
-                        ViewData["APELLIDO"] = customer1.APELLIDO;
-                        ViewData["NOMBRE"] = customer1.NOMBRE;
-                        ViewData["CORREO"] = customer1.CORREO;
-                        ViewData["TELEFONO"] = customer1.TELEFONO;
-                        ViewData["PLACA"] = customer1.PLACA;
-                        ViewData["MARCA"] = customer1.MARCA;
-                        ViewData["MODELO"] = customer1.MODELO;
-                        ViewData["CLASE"] = customer1.CLASE;
-                        ViewData["NUM_ASI"] = customer1.NUM_ASI;
-
-                        return View();
-                    }
-                    else if(!string.IsNullOrEmpty(TempData["dni"] as string))
-                    {
+                    return View();
+                }
+                else if (!string.IsNullOrEmpty(TempData["dni"] as string))
+                {
                     int a = Convert.ToInt32(TempData["dni"]);
 
                     var customer1 = context.CLIENTE_AUTO.FirstOrDefault(i => i.DNI == a);
@@ -89,21 +84,22 @@ namespace WebApplication1.Controllers
                     ViewData["MODELO"] = customer1.MODELO;
                     ViewData["CLASE"] = customer1.CLASE;
                     ViewData["NUM_ASI"] = customer1.NUM_ASI;
- 
-                }
-
 
                 }
 
 
+            }
 
-            if (!string.IsNullOrEmpty(Cod)) {
+
+            //Validar que los datos sean los correctos
+            if (!string.IsNullOrEmpty(Cod))
+            {
                 var context = new CARWASHEntities5();
                 if (ModelState.IsValid)
                 {
-                     
+
                     var customer = context.SERVICIO.FirstOrDefault(i => i.COD_SERVICIO == Cod);
- 
+
                     if (customer == null && !string.IsNullOrEmpty(Cod))
                     {
                         TempData["Message"] = "No encontro Servicios ";
@@ -112,7 +108,7 @@ namespace WebApplication1.Controllers
 
                     }
 
-                    else if(customer !=null)
+                    else if (customer != null)
                     {
 
 
@@ -131,12 +127,6 @@ namespace WebApplication1.Controllers
                     }
                 }
 
-
-
-              
-
-
-
             }
             else
             {
@@ -147,8 +137,10 @@ namespace WebApplication1.Controllers
             }
 
 
-           if (!string.IsNullOrEmpty(Cod2)) {
+            if (!string.IsNullOrEmpty(Cod2))
+            {
                 var context = new CARWASHEntities5();
+                //Validar que los datos sean los correctos
                 if (ModelState.IsValid)
                 {
 
@@ -166,7 +158,7 @@ namespace WebApplication1.Controllers
                     {
 
                         var customer2 = context.MATERIALES.FirstOrDefault(i => i.COD_MATE == Cod2);
-                        ViewData["COD2"] = customer2.DESCRIPCION;
+                        ViewData["descripcion"] = customer2.DESCRIPCION;
 
 
 
@@ -176,10 +168,14 @@ namespace WebApplication1.Controllers
 
                         string a = Convert.ToString(TempData["materiales"]);
                         var customer3 = context.MATERIALES.FirstOrDefault(i => i.COD_MATE == a);
-                        ViewData["COD2"] = customer.COD_MATE;
-                        ViewData["descripcion"] = customer.DESCRIPCION;
-                        ViewData["precio"] = customer.PRECI_UNI;
-                        ViewData["fecha"] = customer.FECHA_INGRESO;
+                        ViewData["descripcion"] = customer3.DESCRIPCION;
+                        
+                        ViewData["precio"] = customer3.PRECI_UNI;
+                        ViewData["fecha"] = customer3.FECHA_INGRESO;
+
+
+
+
 
                     }
 
@@ -191,8 +187,8 @@ namespace WebApplication1.Controllers
 
         }
 
-
-       
+ 
+   
 
 
     }

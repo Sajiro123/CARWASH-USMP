@@ -1,17 +1,12 @@
 ﻿@model WebApplication1.Models.ORDEN_ATENCION
-@{Layout = null;}
-<!doctype html>
-<html>
+ 
+ 
 <head>
     <meta charset="utf-8">
     <title>Documento sin título</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <!-- Demo styling -->
-    <link href="~/Content/css/jq.css" rel="stylesheet">
-    <link href="~/Content/css/theme.default.css" rel="stylesheet" />
+    <link href="~/Content/css/tablareal.css" rel="stylesheet" />
     <!-- jQuery: required (tablesorter works with jQuery 1.2.3+) -->
 
 </head>
@@ -69,36 +64,41 @@
             $(ctl).parents("tr").remove();
         }
     </script>
-    <h2 align="center">Generar Orden De Compra</h2>
+    <div class="logo-name">
+        Generar Orden de Compra
+    </div>
     <p align="center">&nbsp;</p>
+   
+    <div id="wrapper">
+        <br />  <br />
+        @if (@TempData["Message"] != null)
+        {
 
-    @if (@TempData["Message"] != null)
-    {
-
-        <script>$('.alert').alert()</script>
-        <div class="col-md-11" style="text-align:center; float:center">
-            <div class="alert alert-danger alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                <h4>
-                    <i class="icon fa fa-check"></i> Error
-                </h4>
-                @TempData["Message"]
+            <script>$('.alert').alert()</script>
+            <div class="col-md-11" style="text-align:center;   ">
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h4>
+                        <i class="icon fa fa-check"></i> Error
+                    </h4>
+                    @TempData["Message"]
+                </div>
             </div>
-        </div>
 
 
-    }
-    <div class="container">
-        <div class="panel panel-default">
-            @using (Html.BeginForm())
-            {
-               <div class="panel-heading">Datos Del Material</div>
+        }
+
+        @using (Html.BeginForm())
+        {
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Datos Del Proveedor</div>
                 <div class="panel-body">
                     <table width="1137" height="129">
                         <tr>
-                            <td width="76" height="48"><label>Razon Social:</label></td>
-                            <td width="422">@Html.TextBox("txtDireccion", TempData["RazonSocial"], new { disabled = "true" })</td>
-                            <td></td>
+                            <td  align="left"><label>Razon Social:</label> 
+                            @Html.TextBox("txtDireccion", TempData["RazonSocial"], new { disabled = "true" })</td>
+                            
                             <td width="235">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" style="margin:auto">
                                     Buscar Proveedor
@@ -139,27 +139,30 @@
                         </div>
                     </div>
                     <div>
-                        <tr>
-                            <td width="76" height="41"> <label>Direccion :</label></td>
-                            <td> @Html.TextBox("txtDireccion", TempData["Direccion"], new { disabled = "true" })</td>
-                            <td width="51"><label>Ruc :</label></td>
-                            <td>@Html.TextBox("txtRuc", TempData["Ruc"], new { disabled = "true" })</td>
-                            <td width="94"><label>Telefono :</label></td>
-                            <td>@Html.TextBox("txtTelefono", TempData["Telefono"], new { disabled = "true" })</td>
-                        </tr>
+                        <table width="950px">
+
+
+                            <tr>
+                                <td> <label>Direccion :</label></td>
+                                <td> @Html.TextBox("txtDireccion", TempData["Direccion"], new { disabled = "true" })</td>
+                                <td width="51"><label>Ruc :</label></td>
+                                <td>@Html.TextBox("txtRuc", TempData["Ruc"], new { disabled = "true" })</td>
+                                <td width="94"><label>Telefono :</label></td>
+                                <td>@Html.TextBox("txtTelefono", TempData["Telefono"], new { disabled = "true" })</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-            }
-        </div>
-    </div>
-    <div class="container">
+
+            </div>
+        }
         <div class="panel panel-default">
             <div class="panel-heading">Datos Del Material</div>
             <div class="panel-body">
-                <table width="1032" height="139">
+                <table width="1032" height="159">
                     <tr>
-                        <td width="114"><label>Descripcion</label> </td>
-                        <td width="403">@Html.TextBox("txtDes", ViewData["Descripcion"], new { id = "Des", disabled = "true" })</td>
+                        <td align="left" ><label>Descripcion</label>  
+                        @Html.TextBox("txtDes", ViewData["Descripcion"], new { id = "Des", disabled = "true", style = "width: 500px;" })</td>
                         <td width="134">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" style="margin:auto">
                                 Buscar Material
@@ -167,105 +170,134 @@
                         </td>
                     </tr>
                     <tr>
-                        <td height="43"><label>Precio Unitario: </label></td>
-                        <td>@Html.TextBox("txtPreU", ViewData["PreU"], new { id = "PreU", disabled = "true" })</td>
-                      <td width="987"><label>Cantidad</label>&nbsp;&nbsp;@Html.TextBox("txtCantidad", null, new { id = "Cantidad"  ,@type="number"})</td>
+                        <td align="left"><label>Precio Unitario: </label>
+                       @Html.TextBox("txtPreU", ViewData["PreU"], new { id = "PreU", disabled = "true" })</td>
+                        <td>
+                            <label>Fecha Solicitada:</label>
+                            <input type="date" style="width:200px; height:30px">
+                        </td>
                     </tr>
                     <tr></tr>
                 </table>
                 @Html.TextBox("txtCodigo", ViewData["Codigo"], new { id = "Codigo", hidden = "true" })
             </div>
         </div>
-    </div>
-    <!-- Button trigger modal -->
-    <table width="1353" height="47">
-        <tr>
-            <td width="181"></td>
-            <td><label>Fecha Solicitada:</label> 
-          <input type="date"></td>
-            <td width="169">
-                <button type="button" onclick="productsAdd()">
-                    Agregar Material
-                </button>
-            </td>
-        </tr>
-    </table>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="text-align: center">Buscar Material</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
+        <!-- Button trigger modal -->
+        <table height="47">
+            <tr>
+
+                <td>
+                  
+                <td width="987"><label>Cantidad</label>&nbsp;&nbsp;@Html.TextBox("txtCantidad", null, new { id = "Cantidad", @type = "number" })</td>
+                </td>
+                <td width="2520">
+                    <button type="button" onclick="productsAdd()" class="btn btn-danger">
+                        Agregar Material
                     </button>
-                </div>
-                <div class="modal-body">
-                    <div style="text-align: center">
-                        @using (Html.BeginForm())
-                        {
-                            @Html.Label("Codigo:")
-                                 @Html.TextBox("txtMaterial")
-                            <button type="submit">Buscar</button>
-                        }
+                </td>
+            </tr>
+        </table>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center">Buscar Material</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="text-align: center">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.Label("Codigo:")
+                                @Html.TextBox("txtMaterial")
+                                <button type="submit">Buscar</button>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="panel panel-default" align="center">
-            <div class="panel-heading"></div>
-            <div class="panel-body">
-                <table id="productTable" width="300" align="center" class="table">
-                    <thead>
-                        <tr>
-                            <th>Codigo</th>
-                            <th>Descripcion</th>
-                            <th>Cantidad</th>
-                            <th>Precio Unitario</th>
-                            <th>Sub Total</th>  
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+        <table id="keywords" class="table">
+            <thead>
+                <tr>
+                    <th><span>Codigo</span></th>
+                    <th><span>Fecha de Emision</span></th>
+                    <th><span>Estado</span></th>
+                    <th><span>Detalle</span></th>
+                    <th><span>Actualizar</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="lalign">silly tshirts</td>
+                    <td>6,000</td>
+                    <td>110</td>
+                    <td>1.8%</td>
+                    <td>22.2</td>
+                </tr>
+                <tr>
+                    <td class="lalign">desktop workspace photos</td>
+                    <td>2,200</td>
+                    <td>500</td>
+                    <td>22%</td>
+                    <td>8.9</td>
+                </tr>
+                <tr>
+                    <td class="lalign">arrested development quotes</td>
+                    <td>13,500</td>
+                    <td>900</td>
+                    <td>6.7%</td>
+                    <td>12.0</td>
+                </tr>
+                <tr>
+                    <td class="lalign">popular web series</td>
+                    <td>8,700</td>
+                    <td>350</td>
+                    <td>4%</td>
+                    <td>7.0</td>
+                </tr>
+                <tr>
+                    <td class="lalign">2013 webapps</td>
+                    <td>9,900</td>
+                    <td>460</td>
+                    <td>4.6%</td>
+                    <td>11.5</td>
+                </tr>
+                <tr>
+                    <td class="lalign">ring bananaphone</td>
+                    <td>10,500</td>
+                    <td>748</td>
+                    <td>7.1%</td>
+                    <td>17.3</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin:60px 800px">
+            <table width="300px">
+                <tr>
+                    <td><label>Precio Total :</label></td>
+                    <td>@Html.TextBox("txtPrecio")</td>
+                </tr>
+            </table>
         </div>
+        <div style="margin: 80px 390px ">
+            <table width="413">
+                <tr>
+                    <td><input type="submit" value="Generar Orden de Compra" class="btn btn-danger"></td>
+                    <td><input type="submit" value="Imprimir" class="btn btn-danger"></td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <div style="margin:-30px 100px;text-align:left">
+            <input type="submit" value="Salir" class="btn btn-danger">
+        </div>
+        <br />  <br />
     </div>
-    <div style="margin:60px 800px">
-        <table width="300px">
-            <tr>
-                <td><label>Precio Total :</label></td>
-                <td>@Html.TextBox("txtPrecio")</td>
-            </tr>
-        </table>
-    </div>
-    <div style="margin: 80px 390px ">
-        <table width="413">
-            <tr>
-                <td><input type="submit" value="Generar Orden de Compra" class="btn btn-danger"></td>
-                <td><input type="submit" value="Imprimir" class="btn btn-danger"></td>
-            </tr>
-        </table>
-    </div>
-    <div style="margin:-30px 60px">
-        <input type="submit" value="Salir">
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="~/Content/js/MostrarTabla.js"></script>
-    <script src="~/Content/js/jquery-1.2.6.min.js"></script>
-    <script src="~/Content/js/jquery.tablesorter.min.js"></script>
-    <script src="~/Content/js/jquery.tablesorter.widgets.min.js"></script>
-    <script>
-        $(function () {
-            $('table').tablesorter({
-                widgets: ['zebra', 'columns'],
-                usNumberFormat: false,
-                sortReset: true,
-                sortRestart: true
-            });
-        });
-    </script>
+ 
 </body>
-</html>
+  

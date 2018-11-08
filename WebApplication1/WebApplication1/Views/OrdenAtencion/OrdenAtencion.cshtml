@@ -1,9 +1,4 @@
-﻿@model WebApplication1.Models.CLIENTE_AUTO
-@{
-    Layout = null;
-}
-<!doctype html>
-<html>
+﻿
 <head>
     <meta charset="utf-8">
     <title>Documento sin título</title>
@@ -11,9 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="~/Content/css/tableindex.css">
     <link rel="stylesheet" href="~/Content/css/MostrarTabla.css">
-    <link rel="stylesheet" type="text/css" href=" https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.jqueryui.min.css">
-     
+
+    <link href="~/Content/css/tablareal.css" rel="stylesheet" />
 
 
 
@@ -23,7 +17,7 @@
 
 <style>
     html {
-        zoom: 95%
+        zoom: 90%
     }
 </style>
 
@@ -62,204 +56,202 @@
             $(ctl).parents("tr").remove();
         }
     </script>
-    <br>
-    <h2 align="center">
+
+    <div class="logo-name">
         GENERAR ORDEN DE ATENCION
-        <Compra></Compra>
-    </h2>
-    <p align="center">&nbsp;</p>
-    @if (@TempData["Message"] != null)
-    {
+    </div>
+    <div id="wrapper">
+        <p align="center">&nbsp;</p>
+        @if (@TempData["Message"] != null)
+        {
 
-        <script>$('.alert').alert()</script>
-        <div class="col-md-11" style="text-align:center; float:center">
-            <div class="alert alert-danger alert-dismissable">
+            <script>$('.alert').alert()</script>
+            <div class="col-md-11" style="text-align:center; float:center">
+                <div class="alert alert-danger alert-dismissable">
 
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                <h4>
-                    <i class="icon fa fa-check"></i> Ingresa
-                </h4>
-                @TempData["Message"]
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h4>
+                        <i class="icon fa fa-check"></i> Ingresa
+                    </h4>
+                    @TempData["Message"]
+                </div>
             </div>
-        </div>
 
 
-    }
+        }
 
- 
 
-        <div class="container">
-            @*@using (Html.BeginForm())
+
+
+        @*@using (Html.BeginForm())
             {*@
-                @Html.AntiForgeryToken()
-                @using (Ajax.BeginForm("OrdenAtencion", "OrdenAtencion", new AjaxOptions { HttpMethod = "POST",InsertionMode=InsertionMode.InsertBefore, UpdateTargetId = "divCliente" }))
-                {
+        @Html.AntiForgeryToken()
+        @using (Ajax.BeginForm("OrdenAtencion", "OrdenAtencion", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.InsertBefore, UpdateTargetId = "divCliente" }))
+        {
 
 
-                    <table id="divCliente">
-                        <tr>
-                            <td>
-                                <!--PANEL -->
+            <table id="divCliente">
+                <tr>
+                    <td>
+                        <!--PANEL -->
 
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Datos Del Cliente</div>
-                                    <div class="panel-body">
-                                        <table>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Datos Del Cliente</div>
+                            <div class="panel-body">
+                                <table>
 
-                                            <tr>
-                                                <td width="82" height="44">
-                                                    <label>DNI :   </label>
-                                                </td>
-                                                <td width="229">  @Html.TextBox("txtDNI", ViewData["DNI"], new { disabled = "true" })</td>
-                                                <td width="93">
-                                                    <label>Apellidos:</label>
-                                                </td>
-                                                <td width="120">@Html.TextBox("txtapellido", ViewData["APELLIDO"], new { disabled = "true" })</td>
-                                            </tr>
+                                    <tr>
+                                        <td width="82" height="44">
+                                            <label>DNI /RUC :   </label>
+                                        </td>
+                                        <td width="229">  @Html.TextBox("txtDNI", ViewData["DNI"], new { disabled = "true" })</td>
+                                        
+                                    
+                                    </tr>
 
-                                        </table>
-                                        <table width="579">
-                                            <tr>
-                                                <td width="79" height="43">
-                                                    <label>Nombres :</label>
-                                                </td>
-                                                <td width="477">@Html.TextBox("txtnombre", ViewData["NOMBRE"], new { disabled = "true" })</td>
+                                </table>
+                                <table width="579">
+                                    <tr>
+                                        <td width="79" height="43" align="left">
+                                            <label>Nombres :</label>
+                                            &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; @Html.TextBox("txtnombre", ViewData["NOMBRE"], new { disabled = "true", style = "width:400px" })
+                                        </td>
 
-                                            </tr>
-                                        </table>
-                                        <table width="568" height="48">
-                                            <tr>
-                                                <td width="92">
-                                                    <label>Correo :</label>
-                                                </td>
-                                                <td width="239">@Html.TextBox("txtcorreo", ViewData["CORREO"], new { disabled = "true" }) </td>
-                                                <td width="84">
-                                                    <label>Telefono :</label>
-                                                </td>
-                                                <td width="133">@Html.TextBox("txttelefono", ViewData["TELEFONO"], new { disabled = "true" }) </td>
+                                    </tr>
+                                </table>
+                                <table width="568" height="48">
+                                    <tr>
+                                        <td width="92">
+                                            <label>Correo :</label>
+                                        </td>
+                                        <td width="239">@Html.TextBox("txtcorreo", ViewData["CORREO"], new { disabled = "true" }) </td>
+                                        <td width="84">
+                                            <label>Telefono :</label>
+                                        </td>
+                                        <td width="133">@Html.TextBox("txttelefono", ViewData["TELEFONO"], new { disabled = "true" }) </td>
 
-                                            </tr>
+                                    </tr>
 
-                                        </table>
+                                </table>
 
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
 
-                            </td>
-                            <td>
-                                <!--PANEL -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Datos Del Auto</div>
-                                    <div class="panel-body">
-                                        <table width="573" height="136">
-                                            <tr>
-                                                <td width="110">
-                                                    <label>Marca :  </label>
-                                                </td>
-                                                <td>@Html.TextBox("txtMarca", ViewData["MARCA"], new { disabled = "true" })</td>
-                                                <td width="98">
-                                                    <label>Modelo :</label>
-                                                </td>
-                                                <td width="175">@Html.TextBox("txtmodelo", ViewData["MODELO"], new { disabled = "true" })</td>
+                    </td>
+                    <td>
+                        <!--PANEL -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Datos Del Auto</div>
+                            <div class="panel-body">
+                                <table width="578" height="136">
+                                    <tr>
+                                        <td width="110">
+                                            <label>Marca :  </label>
+                                        </td>
+                                        <td>@Html.TextBox("txtMarca", ViewData["MARCA"], new { disabled = "true" })</td>
+                                        <td width="98">
+                                            <label>Modelo :</label>
+                                        </td>
+                                        <td width="175">@Html.TextBox("txtmodelo", ViewData["MODELO"], new { disabled = "true" })</td>
 
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Placa :</label>
-                                                </td>
-                                                <td>@Html.TextBox("txtplaca", ViewData["PLACA"], new { disabled = "true" })</td>
-                                                <td>
-                                                    <label>Clase :</label>
-                                                </td>
-                                                <td>@Html.TextBox("txtclase", ViewData["CLASE"], new { disabled = "true" })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Placa :</label>
+                                        </td>
+                                        <td>@Html.TextBox("txtplaca", ViewData["PLACA"], new { disabled = "true" })</td>
+                                        <td>
+                                            <label>Clase :</label>
+                                        </td>
+                                        <td>@Html.TextBox("txtclase", ViewData["CLASE"], new { disabled = "true" })</td>
 
 
-                                            </tr>
-                                            <tr>
-                                                <td width="110" height="39">
-                                                    <label>Nro. Asientos :</label>
-                                                <td width="170">@Html.TextBox("txtasiento", ViewData["NUM_ASI"], new { disabled = "true" })</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" style="margin:auto">
-                                                        Buscar Cliente
+                                    </tr>
+                                    <tr>
+                                        <td width="110" height="39">
+                                            <label>Nro. Asientos :</label>
+                                        <td width="170">@Html.TextBox("txtasiento", ViewData["NUM_ASI"], new { disabled = "true" })</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" style="margin:auto">
+                                                Buscar Cliente
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center">Buscar Cliente</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div style="text-align: center">
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div style="text-align: center">
 
-                                                            <div class="form-horizontal">
-                                                                <h4>
-                                                                    <b>Cliente</b>
-                                                                </h4>
-                                                                <hr />
+                                                        <div class="form-horizontal">
+                                                            <h4>
+                                                                <b>Cliente</b>
+                                                            </h4>
+                                                            <hr />
 
-                                                                <div class="form-group">
-                                                                    <table align="center">
+                                                            <div class="form-group">
+                                                                <table align="center">
 
-                                                                        <tr>
-                                                                            <td> DNI</td>
+                                                                    <tr>
+                                                                        <td> DNI</td>
 
-                                                                            <td>
-                                                                                <div class="col-md-18">
-                                                                                    @Html.TextBox("txtCliente", new { maxlength = 8, size = 8 }, new { @type = "number" , @class = "form-control" })
-                                                                                </div>
-                                                                            </td>
-                                                                            <td> &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Buscar" class="btn btn-default" /></td>
-                                                                        </tr>
+                                                                        <td>
+                                                                            <div class="col-md-18">
+                                                                                @Html.TextBox("txtCliente", new { maxlength = 8, size = 8 }, new { @type = "number", @class = "form-control" })
+                                                                            </div>
+                                                                        </td>
+                                                                        <td> &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Buscar" class="btn btn-default" /></td>
+                                                                    </tr>
 
-                                                                    </table>
+                                                                </table>
 
 
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-offset-2 col-md-10" style="float:center">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-offset-2 col-md-10" style="float:center">
 
 
-                                                                    </div>
                                                                 </div>
                                                             </div>
-
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+
+                    </td>
 
 
-                            </td>
+                </tr>
+            </table>
+        }
+        @*}*@
 
 
-                        </tr>
-                    </table>
-                }
-            @*}*@</div>
-
-    </div>
-    </td>
-    </tr>
-    </table>
-    <br>
-    <br>
-    @*@using (Html.BeginForm())
-    {*@
+        </td>
+        </tr>
+        </table>
+        <br>
+        <br>
+        @*@using (Html.BeginForm())
+            {*@
         @Html.AntiForgeryToken()
 
-    <div class="container">
         @using (Ajax.BeginForm("OrdenAtencion", "OrdenAtencion", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "divservicio" }))
         {
             <!--PANEL -->
@@ -302,7 +294,7 @@
                                                             <td> Servicio &nbsp;&nbsp;</td>
                                                             <td>
                                                                 <div class="col-md-18">
-                                                                    @Html.TextBox("txtServicio", new { maxlength = 8, size = 8 }, new {@class="form-control", @type = "number" })
+                                                                    @Html.TextBox("txtServicio", new { maxlength = 8, size = 8 }, new { @class = "form-control", @type = "number" })
                                                                 </div>
                                                             </td>
                                                             <td>&nbsp;&nbsp; <input type="submit" value="Buscar" class="btn btn-default" /></td>
@@ -372,7 +364,7 @@
                             <table width="435" height="68">
                                 <tr>
                                     <td width="300s" height="68">
-                                        @Html.TextBox("txtMaterial", ViewData["COD2"], new { id = "descripcion", disabled = "true" })
+                                        @Html.TextBox("txtMaterial", ViewData["descripcion"], new { id = "descripcion", disabled = "true" })
                                     </td>
 
                                     <td width="168">
@@ -401,7 +393,7 @@
                                                                 <td> SERVICIO :&nbsp;</td>
                                                                 <td>
                                                                     <div class="col-md-18">
-                                                                        @Html.TextBox("txtcod", ViewData["codigo1"], new { id = "codigo", maxlength = 8, size = 8 , @class = "form-control" })
+                                                                        @Html.TextBox("txtcod", ViewData["codigo1"], new { id = "codigo", maxlength = 8, size = 8, @class = "form-control" })
                                                                     </div>
 
                                                                 </td>
@@ -443,7 +435,7 @@
                                     <td></td>
                                     <td></td>
                                     <td>
-                                        <button type="button" onclick="productsAdd()">Agregar Material</button>
+                                        <button onclick="location.href='@Url.Action("ActionName", "OrdenAtencion")'" />
                                     </td>
                                 </tr>
                             </table>
@@ -454,69 +446,108 @@
             </table>
 
 
-        } </div>
+
+        }
+
+  
+
+    @*@Html.TextBox("txtCodigo", ViewData["descripcion"], new { id = "descripcion", hidden = "true" })
+        @Html.TextBox("txtFecha", ViewData["fecha"], new { id = "fecha", hidden = "true" })
+        @Html.TextBox("txtPrecio", ViewData["precio"], new { id = "precio", hidden = "true" })*@
+
+ 
+            <table id="keywords" class="table">
+                <thead>
+                    <tr>
+                        <th><span>Codigo</span></th>
+                        <th><span>Fecha de Emision</span></th>
+                        <th><span>Estado</span></th>
+                        <th><span>Detalle</span></th>
+                        <th><span>Actualizar</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="lalign">silly tshirts</td>
+                        <td>6,000</td>
+                        <td>110</td>
+                        <td>1.8%</td>
+                        <td>22.2</td>
+                    </tr>
+                    <tr>
+                        <td class="lalign">desktop workspace photos</td>
+                        <td>2,200</td>
+                        <td>500</td>
+                        <td>22%</td>
+                        <td>8.9</td>
+                    </tr>
+                    <tr>
+                        <td class="lalign">arrested development quotes</td>
+                        <td>13,500</td>
+                        <td>900</td>
+                        <td>6.7%</td>
+                        <td>12.0</td>
+                    </tr>
+                    <tr>
+                        <td class="lalign">popular web series</td>
+                        <td>8,700</td>
+                        <td>350</td>
+                        <td>4%</td>
+                        <td>7.0</td>
+                    </tr>
+                    <tr>
+                        <td class="lalign">2013 webapps</td>
+                        <td>9,900</td>
+                        <td>460</td>
+                        <td>4.6%</td>
+                        <td>11.5</td>
+                    </tr>
+                    <tr>
+                        <td class="lalign">ring bananaphone</td>
+                        <td>10,500</td>
+                        <td>748</td>
+                        <td>7.1%</td>
+                        <td>17.3</td>
+                    </tr>
+                </tbody>
+            </table>
+     
+
+    <div style="margin: 80px 390px ">
+
+
+        <table width="413">
+            <tr>
+                <td>
+                    <input type="submit" value="Generar Orden de Atencion" class="btn btn-danger">
+                </td>
+                <td>
+                    <input type="button" value="Imprimir" class="btn btn-danger" onclick="window.print()">
+                </td>
+            </tr>
+        </table>
+
+
+
     </div>
 
-    @Html.TextBox("txtCodigo", ViewData["descripcion"], new { id = "descripcion", hidden = "true" })
-    @Html.TextBox("txtFecha", ViewData["fecha"], new { id = "fecha", hidden = "true" })
-    @Html.TextBox("txtPrecio", ViewData["precio"], new { id = "precio", hidden = "true" })
-        <div class="container">
-            <div class="panel panel-default">
-                <div class="panel-heading">Materiales</div>
-                <div class="panel-body">
-                    <table id="productTable"  width="300" align="center" class="table">
-                        <thead>
-                            <tr>
-                                <th>Codigo</th>
-                                <th>Descripcion</th>
-                                <th>Fecha Solicitada</th>
-                                <th>Cantidad</th>
-                                <th>Marca</th>
-                                <th>Precio</th>
-                                <th>Sub Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
+
+
  
-            <div style="margin: 80px 390px ">
 
-
-                <table width="413">
-                    <tr>
-                        <td>
-                            <input type="submit" value="Generar Orden de Atencion" class="btn btn-danger">
-                        </td>
-                        <td>
-                            <input type="button" value="Imprimir" class="btn btn-danger" onclick="window.print()">
-                        </td>
-                    </tr>
-                </table>
-
-
-
-            </div>
-
-
-
-
-
-            <table>
-                <td>
-                    <div style="margin: 20px 150px">
-                        <input type="submit" value="Salir" class="btn btn-danger">
-                </td>
+    <table>
+        <td>
+            <div style="margin: 20px 150px">
+                <input type="submit" value="Salir" class="btn btn-danger">
+        </td>
         </div></tr>
-        </table>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="~/Content/js/MostrarTabla.js"></script>
-        <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="~/Content/js/MostrarTabla.js"></script>
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
 
 </body>
-</html>
+

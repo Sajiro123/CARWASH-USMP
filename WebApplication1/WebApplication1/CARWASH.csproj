@@ -153,12 +153,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ActualizaEstadoAtencionController.cs" />
     <Compile Include="Controllers\ComprobantePagoController.cs" />
+    <Compile Include="Controllers\GenerarCotizacionController.cs" />
     <Compile Include="Controllers\GenerarOrdenCompraController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrdenAtencionController.cs" />
     <Compile Include="Controllers\RegistrarServicioController.cs" />
+    <Compile Include="Controllers\VentaDiariasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -251,9 +253,22 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\mainLayout.css" />
+    <Content Include="Content\css\button.css" />
+    <Content Include="Content\css\tablareal.css" />
     <Content Include="Content\css\util.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\img\Fotologin.jpg" />
+    <Content Include="Content\img\logooficial.fw.png" />
+    <Content Include="Content\img\logooficial.png" />
     <Content Include="Content\img\scotiabank1.jpg" />
+    <Content Include="Content\js\breakpoints.min.js" />
+    <Content Include="Content\js\browser.min.js" />
+    <Content Include="Content\js\button.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\main.js" />
     <Content Include="Content\js\MostrarTabla.js" />
+    <Content Include="Content\js\util.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -277,6 +292,11 @@
     <Content Include="Models\CARWASH.edmx.diagram">
       <DependentUpon>CARWASH.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -307,12 +327,12 @@
     <Content Include="Views\ComprobantePago\ComprobantePago.cshtml" />
     <Content Include="Views\OrdenAtencion\OrdenAtencion.cshtml" />
     <Content Include="Views\RegistrarServicio\RegistrarServicio.cshtml" />
-    <Content Include="Views\RegistrarServicio\Index.cshtml" />
-    <Content Include="Views\RegistrarServicio\RegistrarServicio1.cshtml" />
+    <Content Include="Views\ActualizaEstadoAtencion\ActualizaEstadoAtencion.cshtml" />
+    <Content Include="Views\VentaDiarias\VentaDiarias.cshtml" />
+    <Content Include="Views\GenerarCotizacion\GenerarCotizacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\alex\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
